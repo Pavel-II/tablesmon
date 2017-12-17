@@ -1,0 +1,8 @@
+*.user
+.qmake.stash
+qrc_*.cpp
+moc_*.*
+ui_*.h
+*.o
+*~ core
+*.core
