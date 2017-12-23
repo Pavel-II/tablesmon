@@ -2,9 +2,12 @@
 #include "ui_tsm_mw.h"
 
 void aboutApplication(){
-    QMessageBox::information(qApp->activeWindow(),
-                             "About this Application",
-                             "It's a simple sql monitoring!");
+    QMessageBox msgBoxAboutApp(qApp->activeWindow());
+    msgBoxAboutApp.setWindowTitle("About this Application");
+    msgBoxAboutApp.setTextFormat(Qt::RichText);
+    msgBoxAboutApp.setText("It's a simple sql monitoring!<br>"
+                   "<a href='https://github.com/Pavel-II/tablesmon'>Application on github</a>");
+    msgBoxAboutApp.exec();
 }
 
 tsm_mw::tsm_mw(QWidget *parent) :
@@ -14,19 +17,30 @@ tsm_mw::tsm_mw(QWidget *parent) :
     ui->setupUi(this);
 
     cd = new tsm_cd(this);
+    sd = new tsm_settings(this);
     t = new QTimer(this);
 
     connect(cd,SIGNAL(setConnect(QString,QString,QString,int,QString,QString)),
             this, SLOT(setDBConnect(QString,QString,QString,int,QString,QString)));
     connect(ui->actionNew_ts_mon, SIGNAL(triggered(bool)), this, SLOT(newTsMon()));
-    connect(ui->actionSettings,SIGNAL(triggered(bool)),this, SLOT(doConnect()));
+
+    connect(ui->actionConnection,SIGNAL(triggered(bool)),this, SLOT(doConnect()));
+    connect(ui->actionSettings,  SIGNAL(triggered(bool)),this, SLOT(doSettings()));
+
     connect(t, SIGNAL(timeout()), this, SLOT(updateTime()));
     //
     ui->menuAbout->addAction(QObject::tr("Application"), []() { aboutApplication(); });
     ui->menuAbout->addSeparator();
     ui->menuAbout->addAction(QObject::tr("Qt"), []() { qApp->aboutQt(); });
 
+    sb = new tsm_w_sb();
+    ui->statusBar->addWidget(sb);
+
     cd->exec();
+}
+
+void tsm_mw::doSettings(){
+    sd->exec();
 }
 
 void tsm_mw::doConnect(){
@@ -35,6 +49,8 @@ void tsm_mw::doConnect(){
 }
 
 void tsm_mw::setDBConnect(QString drv, QString dbname, QString hostname, int port, QString user, QString pass){
+
+    db.removeDatabase(drv);
 
     db = QSqlDatabase::addDatabase(drv);
 
@@ -45,14 +61,17 @@ void tsm_mw::setDBConnect(QString drv, QString dbname, QString hostname, int por
     db.setPassword(pass);
     if(db.open()){
         t->start(1000);
-    } else {
+        sb->setConnectInfo(QString("Connect to host: %1:%4 by %2@%3")
+                           .arg(hostname)
+                           .arg(user)
+                           .arg(dbname)
+                           .arg(QString::number(port)));
+        this->newTsMon();
+    } else {        
+        sb->setConnectInfo(QString("Disconnected"));
         QMessageBox::information(this, "db not open",db.lastError().text());
         t->stop();
-        ui->mdiArea->addSubWindow(cd);
-        cd->showMaximized();
     }
-    cd->accept();
-    this->newTsMon();
 }
 
 tsm_mw::~tsm_mw()

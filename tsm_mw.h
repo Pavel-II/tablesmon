@@ -11,8 +11,8 @@
 #include <QTimer>
 #include <tsm_cd.h>
 #include <tsm_w.h>
-
-#include <QDebug>
+#include <tsm_settings.h>
+#include "tsm_w_sb.h"
 
 void aboutApplication();
 
@@ -33,9 +33,12 @@ private:
     QSqlDatabase db;
     QTimer *t;
     QDialog *cd;
+    QDialog *sd;
+    tsm_w_sb *sb;
 
 private slots:
     void doConnect();
+    void doSettings();
     void newTsMon();
     void updateTime();
     void setDBConnect(QString drv,QString dbname,QString hostname, int port, QString user,QString pass);

@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QSqlDatabase>
-#include <QDebug>
 
 namespace Ui {
 class tsm_cd;
@@ -25,6 +24,11 @@ private slots:
     void on_pushButton_pressed();
 
     void on_pushButton_released();
+
+    void on_comboDriver_currentTextChanged(const QString &arg1);
+
+
+    void on_cbSaveConnection_clicked(bool checked);
 
 private:
     Ui::tsm_cd *ui;

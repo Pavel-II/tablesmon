@@ -28,18 +28,24 @@ SOURCES += \
         tsm_mw.cpp \
     tsm_cd.cpp \
     sqlsyntaxhighlighter.cpp \
-    tsm_w.cpp
+    tsm_w.cpp \
+    tsm_settings.cpp \
+    tsm_w_sb.cpp
 
 HEADERS += \
         tsm_mw.h \
     tsm_cd.h \
     sqlsyntaxhighlighter.h \
-    tsm_w.h
+    tsm_w.h \
+    tsm_settings.h \
+    tsm_w_sb.h
 
 FORMS += \
         tsm_mw.ui \
     tsm_cd.ui \
-    tsm_w.ui
+    tsm_w.ui \
+    tsm_settings.ui \
+    tsm_w_sb.ui
 
 RESOURCES += \
     icons.qrc

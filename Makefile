@@ -54,21 +54,29 @@ SOURCES       = main.cpp \
 		tsm_mw.cpp \
 		tsm_cd.cpp \
 		sqlsyntaxhighlighter.cpp \
-		tsm_w.cpp qrc_icons.cpp \
+		tsm_w.cpp \
+		tsm_settings.cpp \
+		tsm_w_sb.cpp qrc_icons.cpp \
 		moc_tsm_mw.cpp \
 		moc_tsm_cd.cpp \
 		moc_sqlsyntaxhighlighter.cpp \
-		moc_tsm_w.cpp
+		moc_tsm_w.cpp \
+		moc_tsm_settings.cpp \
+		moc_tsm_w_sb.cpp
 OBJECTS       = main.o \
 		tsm_mw.o \
 		tsm_cd.o \
 		sqlsyntaxhighlighter.o \
 		tsm_w.o \
+		tsm_settings.o \
+		tsm_w_sb.o \
 		qrc_icons.o \
 		moc_tsm_mw.o \
 		moc_tsm_cd.o \
 		moc_sqlsyntaxhighlighter.o \
-		moc_tsm_w.o
+		moc_tsm_w.o \
+		moc_tsm_settings.o \
+		moc_tsm_w_sb.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -130,6 +138,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -151,11 +160,15 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		tablesmon.pro tsm_mw.h \
 		tsm_cd.h \
 		sqlsyntaxhighlighter.h \
-		tsm_w.h main.cpp \
+		tsm_w.h \
+		tsm_settings.h \
+		tsm_w_sb.h main.cpp \
 		tsm_mw.cpp \
 		tsm_cd.cpp \
 		sqlsyntaxhighlighter.cpp \
-		tsm_w.cpp
+		tsm_w.cpp \
+		tsm_settings.cpp \
+		tsm_w_sb.cpp
 QMAKE_TARGET  = tablesmon
 DESTDIR       = 
 TARGET        = tablesmon
@@ -164,7 +177,7 @@ TARGET        = tablesmon
 first: all
 ####### Build rules
 
-$(TARGET): ui_tsm_mw.h ui_tsm_cd.h ui_tsm_w.h $(OBJECTS)  
+$(TARGET): ui_tsm_mw.h ui_tsm_cd.h ui_tsm_w.h ui_tsm_settings.h ui_tsm_w_sb.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: tablesmon.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -228,6 +241,7 @@ Makefile: tablesmon.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -314,6 +328,7 @@ Makefile: tablesmon.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -354,9 +369,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents icons.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents tsm_mw.h tsm_cd.h sqlsyntaxhighlighter.h tsm_w.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp tsm_mw.cpp tsm_cd.cpp sqlsyntaxhighlighter.cpp tsm_w.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents tsm_mw.ui tsm_cd.ui tsm_w.ui $(DISTDIR)/
+	$(COPY_FILE) --parents tsm_mw.h tsm_cd.h sqlsyntaxhighlighter.h tsm_w.h tsm_settings.h tsm_w_sb.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp tsm_mw.cpp tsm_cd.cpp sqlsyntaxhighlighter.cpp tsm_w.cpp tsm_settings.cpp tsm_w_sb.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents tsm_mw.ui tsm_cd.ui tsm_w.ui tsm_settings.ui tsm_w_sb.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -396,12 +411,14 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -m64 -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_tsm_mw.cpp moc_tsm_cd.cpp moc_sqlsyntaxhighlighter.cpp moc_tsm_w.cpp
+compiler_moc_header_make_all: moc_tsm_mw.cpp moc_tsm_cd.cpp moc_sqlsyntaxhighlighter.cpp moc_tsm_w.cpp moc_tsm_settings.cpp moc_tsm_w_sb.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_tsm_mw.cpp moc_tsm_cd.cpp moc_sqlsyntaxhighlighter.cpp moc_tsm_w.cpp
+	-$(DEL_FILE) moc_tsm_mw.cpp moc_tsm_cd.cpp moc_sqlsyntaxhighlighter.cpp moc_tsm_w.cpp moc_tsm_settings.cpp moc_tsm_w_sb.cpp
 moc_tsm_mw.cpp: tsm_cd.h \
 		tsm_w.h \
 		sqlsyntaxhighlighter.h \
+		tsm_settings.h \
+		tsm_w_sb.h \
 		tsm_mw.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -423,11 +440,21 @@ moc_tsm_w.cpp: sqlsyntaxhighlighter.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/rich/develop/creatorQt/tablesmon -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include tsm_w.h -o moc_tsm_w.cpp
 
+moc_tsm_settings.cpp: tsm_settings.h \
+		moc_predefs.h \
+		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/rich/develop/creatorQt/tablesmon -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include tsm_settings.h -o moc_tsm_settings.cpp
+
+moc_tsm_w_sb.cpp: tsm_w_sb.h \
+		moc_predefs.h \
+		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/rich/develop/creatorQt/tablesmon -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include tsm_w_sb.h -o moc_tsm_w_sb.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_tsm_mw.h ui_tsm_cd.h ui_tsm_w.h
+compiler_uic_make_all: ui_tsm_mw.h ui_tsm_cd.h ui_tsm_w.h ui_tsm_settings.h ui_tsm_w_sb.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_tsm_mw.h ui_tsm_cd.h ui_tsm_w.h
+	-$(DEL_FILE) ui_tsm_mw.h ui_tsm_cd.h ui_tsm_w.h ui_tsm_settings.h ui_tsm_w_sb.h
 ui_tsm_mw.h: tsm_mw.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic tsm_mw.ui -o ui_tsm_mw.h
@@ -439,6 +466,14 @@ ui_tsm_cd.h: tsm_cd.ui \
 ui_tsm_w.h: tsm_w.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic tsm_w.ui -o ui_tsm_w.h
+
+ui_tsm_settings.h: tsm_settings.ui \
+		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic tsm_settings.ui -o ui_tsm_settings.h
+
+ui_tsm_w_sb.h: tsm_w_sb.ui \
+		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic tsm_w_sb.ui -o ui_tsm_w_sb.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -453,13 +488,17 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 main.o: main.cpp tsm_mw.h \
 		tsm_cd.h \
 		tsm_w.h \
-		sqlsyntaxhighlighter.h
+		sqlsyntaxhighlighter.h \
+		tsm_settings.h \
+		tsm_w_sb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 tsm_mw.o: tsm_mw.cpp tsm_mw.h \
 		tsm_cd.h \
 		tsm_w.h \
 		sqlsyntaxhighlighter.h \
+		tsm_settings.h \
+		tsm_w_sb.h \
 		ui_tsm_mw.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tsm_mw.o tsm_mw.cpp
 
@@ -475,6 +514,14 @@ tsm_w.o: tsm_w.cpp tsm_w.h \
 		ui_tsm_w.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tsm_w.o tsm_w.cpp
 
+tsm_settings.o: tsm_settings.cpp tsm_settings.h \
+		ui_tsm_settings.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tsm_settings.o tsm_settings.cpp
+
+tsm_w_sb.o: tsm_w_sb.cpp tsm_w_sb.h \
+		ui_tsm_w_sb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tsm_w_sb.o tsm_w_sb.cpp
+
 qrc_icons.o: qrc_icons.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_icons.o qrc_icons.cpp
 
@@ -489,6 +536,12 @@ moc_sqlsyntaxhighlighter.o: moc_sqlsyntaxhighlighter.cpp
 
 moc_tsm_w.o: moc_tsm_w.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tsm_w.o moc_tsm_w.cpp
+
+moc_tsm_settings.o: moc_tsm_settings.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tsm_settings.o moc_tsm_settings.cpp
+
+moc_tsm_w_sb.o: moc_tsm_w_sb.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tsm_w_sb.o moc_tsm_w_sb.cpp
 
 ####### Install
 

@@ -23,6 +23,7 @@ void tsm_cd::on_okButton_clicked()
                 ui->spinBoxPort->value(),
                 ui->editUsername->text(),
                 ui->editPassword->text());
+    this->accept();
 }
 
 
@@ -34,4 +35,27 @@ void tsm_cd::on_pushButton_pressed()
 void tsm_cd::on_pushButton_released()
 {
     ui->editPassword->setEchoMode(QLineEdit::Password);
+}
+
+void tsm_cd::on_comboDriver_currentTextChanged(const QString &arg1)
+{
+    //
+    if ((arg1 == "QSQLITE") || (arg1 == "QSQLITE2")) {
+         ui->spinBoxPort->setReadOnly(true);
+         ui->spinBoxPort->setEnabled(false);
+    } else {
+        ui->spinBoxPort->setReadOnly(false);
+        ui->spinBoxPort->setEnabled(true);
+        // read post from settings
+        ui->spinBoxPort->setValue(5432);
+    }
+}
+
+void tsm_cd::on_cbSaveConnection_clicked(bool checked)
+{
+    if (checked) {
+        // save connection
+    } else {
+        // !save
+    }
 }
