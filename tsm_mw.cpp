@@ -3,10 +3,10 @@
 
 void aboutApplication(){
     QMessageBox msgBoxAboutApp(qApp->activeWindow());
-    msgBoxAboutApp.setWindowTitle("About this Application");
+    msgBoxAboutApp.setWindowTitle(QObject::tr("About this Application"));
     msgBoxAboutApp.setTextFormat(Qt::RichText);
-    msgBoxAboutApp.setText("It's a simple sql monitoring!<br>"
-                   "<a href='https://github.com/Pavel-II/tablesmon'>Application on github</a>");
+    msgBoxAboutApp.setText(QObject::tr("It's a simple sql monitoring!<br>"
+                   "<a href='https://github.com/Pavel-II/tablesmon'>Application on github</a>"));
     msgBoxAboutApp.exec();
 }
 
@@ -16,16 +16,21 @@ tsm_mw::tsm_mw(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    cd = new tsm_cd(this);
-    sd = new tsm_settings(this);
+    //
+    initLocalDB();
+    //
+    cd = new tsm_cd(localDB, this);
+    sd = new tsm_settings(localDB, this);
     t = new QTimer(this);
 
-    connect(cd,SIGNAL(setConnect(QString,QString,QString,int,QString,QString)),
-            this, SLOT(setDBConnect(QString,QString,QString,int,QString,QString)));
+    connect(cd,SIGNAL(   setConnect(QString,QString,QString,int,QString,QString, bool)),
+            this, SLOT(setDBConnect(QString,QString,QString,int,QString,QString, bool)));
     connect(ui->actionNew_ts_mon, SIGNAL(triggered(bool)), this, SLOT(newTsMon()));
 
     connect(ui->actionConnection,SIGNAL(triggered(bool)),this, SLOT(doConnect()));
     connect(ui->actionSettings,  SIGNAL(triggered(bool)),this, SLOT(doSettings()));
+    connect(ui->actionClose_all, SIGNAL(triggered(bool)),this, SLOT(closeAllWindows()));
+    ui->actionSettings->setDisabled(true); // Not implemented yet
 
     connect(t, SIGNAL(timeout()), this, SLOT(updateTime()));
     //
@@ -39,6 +44,41 @@ tsm_mw::tsm_mw(QWidget *parent) :
     cd->exec();
 }
 
+void tsm_mw::initLocalDB(){
+    //
+    localDB = QSqlDatabase::addDatabase("QSQLITE", "localDB");
+    //
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    //
+    if (!QDir(path).exists()){
+        QDir().mkdir(path);
+    }
+    //
+    localDB.setDatabaseName(path+"/tsm.db");
+    if(localDB.open()){
+        //
+        QSqlQuery q = localDB.exec("SELECT count(*) as tc FROM sqlite_master "
+                                   "WHERE type='table' AND name='tsm_saved_connections';");
+        //
+        if(q.first() && (q.value("tc").toInt() == 0)){
+            localDB.exec("CREATE TABLE tsm_saved_connections"
+                         "("
+                            "id integer primary key autoincrement not null,"
+                             "driver character varying,"
+                             "hostname character varying,"
+                             "port integer,"
+                             "dbname character varying,"
+                             "dbuser character varying,"
+                             "pass character varying"
+                         ");");
+        }
+    } else {
+        QMessageBox::information(this, "", "Local settings fail\n"+localDB.lastError().text());
+    }
+}
+void tsm_mw::closeAllWindows(){
+    ui->mdiArea->closeAllSubWindows();
+}
 void tsm_mw::doSettings(){
     sd->exec();
 }
@@ -48,7 +88,7 @@ void tsm_mw::doConnect(){
     cd->exec();
 }
 
-void tsm_mw::setDBConnect(QString drv, QString dbname, QString hostname, int port, QString user, QString pass){
+void tsm_mw::setDBConnect(QString drv, QString dbname, QString hostname, int port, QString user, QString pass, bool saveIt){
 
     db.removeDatabase(drv);
 
@@ -67,9 +107,36 @@ void tsm_mw::setDBConnect(QString drv, QString dbname, QString hostname, int por
                            .arg(dbname)
                            .arg(QString::number(port)));
         this->newTsMon();
+        // save if connection successful
+        if (saveIt){
+            if (localDB.isOpen()){
+                QString select = QString("select count(*) from tsm_saved_connections where "
+                                         "driver =   '%1' and "
+                                         "hostname = '%2' and "
+                                         "port =     %3  and "
+                                         "dbname =   '%4' and "
+                                         "dbuser =   '%5'")
+                        .arg(drv).arg(hostname).arg(port).arg(dbname).arg(user);
+                //
+                QSqlQuery q = localDB.exec(select);
+                //
+                if(q.first() && q.value(0).toInt() == 0){
+                    QString insert = QString("INSERT INTO tsm_saved_connections("
+                                             "driver, hostname, port, dbname, dbuser)"
+                                             "VALUES ('%1', '%2', %3, '%4', '%5');")
+                                         .arg(drv)
+                                         .arg(hostname)
+                                         .arg(port)
+                                         .arg(dbname)
+                                         .arg(user);
+                    localDB.exec(insert);
+                }
+            }
+        }
+        //
     } else {        
-        sb->setConnectInfo(QString("Disconnected"));
         QMessageBox::information(this, "db not open",db.lastError().text());
+        sb->setConnectInfo(QString("Disconnected"));
         t->stop();
     }
 }

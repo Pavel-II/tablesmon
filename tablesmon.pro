@@ -9,6 +9,9 @@ QT       += core gui sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = tablesmon
+#
+TRANSLATIONS = tsm_ru_RU.ts
+#
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use

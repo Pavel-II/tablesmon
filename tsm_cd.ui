@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>417</width>
-    <height>238</height>
+    <width>276</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>238</height>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>238</height>
+    <height>200</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -36,8 +36,23 @@
     <normaloff>:/new/prefix1/icons/d.png</normaloff>:/new/prefix1/icons/d.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <property name="spacing">
+    <number>6</number>
+   </property>
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="rightMargin">
+    <number>9</number>
+   </property>
+   <property name="bottomMargin">
+    <number>9</number>
+   </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -47,6 +62,16 @@
          </property>
          <property name="buddy">
           <cstring>comboDriver</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="textLabel5">
+         <property name="text">
+          <string>&amp;Hostname:</string>
+         </property>
+         <property name="buddy">
+          <cstring>editHostname</cstring>
          </property>
         </widget>
        </item>
@@ -81,16 +106,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="textLabel5">
-         <property name="text">
-          <string>&amp;Hostname:</string>
-         </property>
-         <property name="buddy">
-          <cstring>editHostname</cstring>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="textLabel5_2">
          <property name="text">
           <string>P&amp;ort:</string>
@@ -105,7 +120,40 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QComboBox" name="comboDriver"/>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QComboBox" name="comboDriver"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbSavedConnections">
+           <property name="maximumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="editHostname">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="editDatabase">
@@ -125,6 +173,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLineEdit" name="editPassword">
+           <property name="text">
+            <string/>
+           </property>
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
            </property>
@@ -160,9 +211,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="editHostname"/>
        </item>
        <item>
         <widget class="QSpinBox" name="spinBoxPort">
@@ -204,28 +252,48 @@
      <item>
       <widget class="QCheckBox" name="cbSaveConnection">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>Save connection</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
+      <widget class="QPushButton" name="pbCleanAndDeleteSeved">
+       <property name="maximumSize">
         <size>
-         <width>20</width>
-         <height>20</height>
+         <width>46</width>
+         <height>23</height>
         </size>
        </property>
-      </spacer>
+       <property name="toolTip">
+        <string>Clean up fields and delete if it saved</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/new/prefix1/icons/clean.png</normaloff>:/new/prefix1/icons/clean.png</iconset>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="okButton">
