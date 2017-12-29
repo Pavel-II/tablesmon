@@ -9,7 +9,10 @@ I`s simple
 $ qmake && make
 ```
 ### TODO
-It`s alfa version.
+* Improve sqlsyntaxhighlighter
+* Improve translation
+* Improve messages for SQLite
+* Implement application settings.
 
 ### Authors
 me

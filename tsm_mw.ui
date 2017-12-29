@@ -70,12 +70,12 @@
      <x>0</x>
      <y>0</y>
      <width>566</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Action</string>
     </property>
     <addaction name="actionConnection"/>
     <addaction name="separator"/>
@@ -91,7 +91,14 @@
     </property>
     <addaction name="separator"/>
    </widget>
+   <widget class="QMenu" name="menuWindows">
+    <property name="title">
+     <string>Windows</string>
+    </property>
+    <addaction name="actionClose_all"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuWindows"/>
    <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
@@ -147,7 +154,12 @@
     <string>Connection</string>
    </property>
    <property name="shortcut">
-    <string>Shift+С</string>
+    <string>Ctrl+Shift+C</string>
+   </property>
+  </action>
+  <action name="actionClose_all">
+   <property name="text">
+    <string>Close all</string>
    </property>
   </action>
  </widget>

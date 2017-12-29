@@ -45,15 +45,15 @@ void tsm_w::menuSetup(){
 void tsm_w::setActive(bool set){
     QPalette palette = ui->pBState->palette();
     QString state = "";
-    if(set){
+    if(set && db->isOpen()){
         palette.setColor(ui->pBState->backgroundRole(), Qt::green);
         palette.setColor(ui->pBState->foregroundRole(), Qt::green);
-        state = QString("ACTIVE!");
+        state = QObject::tr("ACTIVE!");
     } else {
         palette.setColor(ui->pBState->backgroundRole(), Qt::red);
         palette.setColor(ui->pBState->foregroundRole(), Qt::red);
         ui->pBState->setPalette(palette);
-        state = QString("idle");
+        state = QObject::tr("idle");
     }
     ui->pBState->setPalette(palette);
     ui->pBState->setText(state);
@@ -61,16 +61,16 @@ void tsm_w::setActive(bool set){
 void tsm_w::update(bool up){
     isActive = up;
     this->setActive(isActive);
-    if(up){
+    if(up && db->isOpen()){
         t->start(1000);
     } else {
         t->stop();
-        this->setWindowTitle("Sql watcher");
+        this->setWindowTitle(QObject::tr("Sql watcher"));
     }
 }
 void tsm_w::updateTime(){
     //
-    this->setWindowTitle("Sql watcher [" +ui->textEdit->toPlainText()+ "]");
+    this->setWindowTitle(QObject::tr("Sql watcher") +" [" +ui->textEdit->toPlainText()+ "]");
     //
     model->setQuery(QSqlQuery(ui->textEdit->toPlainText(), *db));
 }

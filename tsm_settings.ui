@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>234</width>
-    <height>393</height>
+    <height>326</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>(Not implemented yet) Applecation settings</string>
+   <string>(Not implemented yet) Application settings</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -35,7 +35,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox">
+         <widget class="QSpinBox" name="sbDB2defPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -64,7 +64,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_2">
+         <widget class="QSpinBox" name="sbIBASEdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -93,7 +93,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_3">
+         <widget class="QSpinBox" name="sbMYSQLdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -122,7 +122,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_5">
+         <widget class="QSpinBox" name="sbOCIdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -151,7 +151,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_6">
+         <widget class="QSpinBox" name="sbODBCdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -180,7 +180,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_7">
+         <widget class="QSpinBox" name="sbPSQLdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -209,7 +209,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_4">
+         <widget class="QSpinBox" name="sbTDSdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -238,7 +238,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_10">
+         <widget class="QSpinBox" name="sbLINTERdefPort">
           <property name="font">
            <font>
             <stylestrategy>PreferDefault</stylestrategy>
@@ -270,7 +270,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBox_8">
+      <widget class="QSpinBox" name="sbUpdateInterval">
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
