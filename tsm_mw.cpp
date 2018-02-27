@@ -15,7 +15,6 @@ tsm_mw::tsm_mw(QWidget *parent) :
     ui(new Ui::tsm_mw)
 {
     ui->setupUi(this);
-
     //
     initLocalDB();
     //
@@ -39,6 +38,7 @@ tsm_mw::tsm_mw(QWidget *parent) :
     ui->menuAbout->addAction(QObject::tr("Qt"), []() { qApp->aboutQt(); });
 
     sb = new tsm_w_sb();
+    connect(sb, SIGNAL(disconnectFromDB()),this, SLOT(disconnectFromDB()));
     ui->statusBar->addWidget(sb);
 
     cd->exec();
@@ -79,6 +79,12 @@ void tsm_mw::initLocalDB(){
 void tsm_mw::closeAllWindows(){
     ui->mdiArea->closeAllSubWindows();
 }
+void tsm_mw::disconnectFromDB(){
+    t->stop();
+    db.close();
+    sb->setConnectInfo(QString("Disconnected"));
+}
+
 void tsm_mw::doSettings(){
     sd->exec();
 }

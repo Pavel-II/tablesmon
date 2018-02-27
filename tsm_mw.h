@@ -47,6 +47,7 @@ private slots:
     void newTsMon();
     void updateTime();
     void setDBConnect(QString drv,QString dbname,QString hostname, int port, QString user,QString pass, bool saveIt);
+    void disconnectFromDB();
 };
 
 #endif // TSM_MW_H

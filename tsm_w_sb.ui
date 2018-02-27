@@ -27,6 +27,26 @@
     <number>0</number>
    </property>
    <item>
+    <widget class="QPushButton" name="pbDisconnect">
+     <property name="maximumSize">
+      <size>
+       <width>16</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>:/new/prefix1/icons/red.png</normaloff>:/new/prefix1/icons/red.png</iconset>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="label">
      <property name="text">
       <string>Connection info:</string>

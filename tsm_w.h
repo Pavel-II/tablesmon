@@ -9,7 +9,9 @@
 #include <QLabel>
 #include <QTimer>
 #include <QMenu>
-#include <QMdiArea>
+//#include <QMdiArea>
+#include <QFileDialog>
+#include <QTextStream>
 #include "sqlsyntaxhighlighter.h"
 
 namespace Ui {
@@ -41,8 +43,11 @@ private slots:
     void updateTime();
     void menuSetup();
     void update(bool up);
+    void openFile(bool);
 
     void on_pBState_clicked();
+
+    void on_pB_openFile_clicked();
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);

@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>234</width>
-    <height>326</height>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>(Not implemented yet) Application settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -296,7 +300,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

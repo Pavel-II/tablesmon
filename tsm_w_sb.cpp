@@ -15,4 +15,18 @@ tsm_w_sb::~tsm_w_sb()
 
 void tsm_w_sb::setConnectInfo(QString info){
     ui->lStatus->setText(info);
+    QPixmap pic;
+    if("Disconnected" == info){
+        pic = QPixmap(":/icons/red.png");
+    } else {
+        pic = QPixmap(":/icons/green.png");
+    }
+    QIcon icon = QIcon(pic);
+    ui->pbDisconnect->setIcon(icon);
+}
+
+void tsm_w_sb::on_pbDisconnect_clicked()
+{
+    //
+    emit disconnectFromDB();
 }
