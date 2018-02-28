@@ -18,6 +18,7 @@ tsm_w::tsm_w(QSqlDatabase *_db, QWidget *parent) :
     this->setActive(false);
     connect(t,                    SIGNAL(timeout()),       this, SLOT(updateTime()));
     connect(ui->actionUpdateByF5, SIGNAL(triggered(bool)), this, SLOT(update(bool)));
+    connect(ui->actionOpenFile,   SIGNAL(triggered(bool)), this, SLOT(openFile(bool)));
     ui->textEdit->addAction(ui->actionUpdateByF5);
     ui->textEdit->setFocus();
 }
@@ -40,6 +41,8 @@ void tsm_w::menuSetup(){
     menu = new QMenu(this);
     menu->addSeparator();
     menu->addAction(ui->actionUpdateByF5);
+    menu->addSeparator();
+    menu->addAction(ui->actionOpenFile);
     menu->addSeparator();
 }
 void tsm_w::setActive(bool set){
@@ -68,6 +71,25 @@ void tsm_w::update(bool up){
         this->setWindowTitle(QObject::tr("Sql watcher"));
     }
 }
+
+void tsm_w::openFile(bool){
+    //
+
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setViewMode(QFileDialog::Detail);
+    QString fileName;
+    if (dialog.exec())
+        fileName = dialog.selectedFiles().at(0);
+    //
+    QFile f(fileName);
+    if (!f.open(QFile::ReadOnly | QFile::Text)) return;
+    QTextStream in(&f);
+    ui->textEdit->clear();
+    ui->textEdit->setText(in.readAll());
+
+}
+
 void tsm_w::updateTime(){
     //
     this->setWindowTitle(QObject::tr("Sql watcher") +" [" +ui->textEdit->toPlainText()+ "]");
@@ -96,4 +118,9 @@ void tsm_w::contextMenuEvent(QContextMenuEvent *event){
 void tsm_w::on_pBState_clicked()
 {
     this->update(!isActive);
+}
+
+void tsm_w::on_pB_openFile_clicked()
+{
+    ui->actionOpenFile->activate(QAction::Trigger);
 }

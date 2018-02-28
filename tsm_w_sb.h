@@ -11,12 +11,16 @@ class tsm_w_sb : public QWidget
 {
     Q_OBJECT
 
+signals:
+    void disconnectFromDB();
 public:
     explicit tsm_w_sb(QWidget *parent = 0);
     ~tsm_w_sb();
     void setConnectInfo(QString info);
 
 private slots:
+
+    void on_pbDisconnect_clicked();
 
 private:
     Ui::tsm_w_sb *ui;

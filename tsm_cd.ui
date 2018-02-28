@@ -6,8 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
     <width>276</width>
     <height>200</height>
+=======
+    <width>314</width>
+    <height>230</height>
+>>>>>>> 465595183674f1c218188122a3d83542caa493e3
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +30,11 @@
   <property name="maximumSize">
    <size>
     <width>16777215</width>
+<<<<<<< HEAD
     <height>200</height>
+=======
+    <height>230</height>
+>>>>>>> 465595183674f1c218188122a3d83542caa493e3
    </size>
   </property>
   <property name="windowTitle">
@@ -33,7 +42,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
-    <normaloff>:/new/prefix1/icons/d.png</normaloff>:/new/prefix1/icons/d.png</iconset>
+    <normaloff>:/icons/d.png</normaloff>:/icons/d.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <property name="spacing">
@@ -203,7 +212,7 @@
            </property>
            <property name="icon">
             <iconset resource="icons.qrc">
-             <normaloff>:/new/prefix1/icons/eye.png</normaloff>:/new/prefix1/icons/eye.png</iconset>
+             <normaloff>:/icons/eye.png</normaloff>:/icons/eye.png</iconset>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -281,7 +290,11 @@
        </property>
        <property name="icon">
         <iconset resource="icons.qrc">
+<<<<<<< HEAD
          <normaloff>:/new/prefix1/icons/clean.png</normaloff>:/new/prefix1/icons/clean.png</iconset>
+=======
+         <normaloff>:/icons/clean.png</normaloff>:/icons/clean.png</iconset>
+>>>>>>> 465595183674f1c218188122a3d83542caa493e3
        </property>
        <property name="flat">
         <bool>true</bool>

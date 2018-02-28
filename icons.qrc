@@ -1,8 +1,13 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
+    <qresource prefix="/">
         <file>icons/d.png</file>
         <file>icons/search.png</file>
         <file>icons/eye.png</file>
         <file>icons/clean.png</file>
+<<<<<<< HEAD
+=======
+        <file>icons/green.png</file>
+        <file>icons/red.png</file>
+>>>>>>> 465595183674f1c218188122a3d83542caa493e3
     </qresource>
 </RCC>

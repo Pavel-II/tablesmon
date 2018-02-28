@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
-    <normaloff>:/new/prefix1/icons/search.png</normaloff>:/new/prefix1/icons/search.png</iconset>
+    <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
