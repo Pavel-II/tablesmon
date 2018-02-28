@@ -15,10 +15,6 @@ tsm_mw::tsm_mw(QWidget *parent) :
     ui(new Ui::tsm_mw)
 {
     ui->setupUi(this);
-<<<<<<< HEAD
-
-=======
->>>>>>> 465595183674f1c218188122a3d83542caa493e3
     //
     initLocalDB();
     //
@@ -83,15 +79,12 @@ void tsm_mw::initLocalDB(){
 void tsm_mw::closeAllWindows(){
     ui->mdiArea->closeAllSubWindows();
 }
-<<<<<<< HEAD
-=======
 void tsm_mw::disconnectFromDB(){
     t->stop();
     db.close();
     sb->setConnectInfo(QString("Disconnected"));
 }
 
->>>>>>> 465595183674f1c218188122a3d83542caa493e3
 void tsm_mw::doSettings(){
     sd->exec();
 }

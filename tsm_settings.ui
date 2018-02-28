@@ -12,13 +12,10 @@
   </property>
   <property name="windowTitle">
    <string>(Not implemented yet) Application settings</string>
-<<<<<<< HEAD
-=======
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
     <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
->>>>>>> 465595183674f1c218188122a3d83542caa493e3
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
